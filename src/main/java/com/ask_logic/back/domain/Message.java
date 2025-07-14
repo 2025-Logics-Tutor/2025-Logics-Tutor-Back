@@ -18,9 +18,8 @@ public class Message {
     @ManyToOne(optional = false)
     private Conversation conversation;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Sender sender; // USER or ASSISTANT
+    private String role; // USER or ASSISTANT
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
@@ -30,9 +29,5 @@ public class Message {
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
-    }
-
-    public enum Sender {
-        USER, ASSISTANT
     }
 }
